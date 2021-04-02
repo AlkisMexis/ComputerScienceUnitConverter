@@ -44,6 +44,10 @@ public class ConverterService {
         return convertedNumberBD;
     }
 
+    public void HellofromAlkis() {
+        System.out.println("gg");
+
+    }
     private static int calculateDistance(DigitalMeasurement from, DigitalMeasurement to) {
         int startingPosition = from.getPosition();
         int endingPosition = to.getPosition();
