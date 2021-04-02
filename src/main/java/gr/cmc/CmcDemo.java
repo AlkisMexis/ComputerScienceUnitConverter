@@ -6,9 +6,14 @@ public class CmcDemo {
     public static void main(String[] args) {
         double number = 5;
 
-        BigDecimal result1 = ConverterService.convertBytes(number, DigitalMeasurement.KILOBYTE, DigitalMeasurement.MEGABYTE);
-        BigDecimal result2 = ConverterService.convertBytes(number, DigitalMeasurement.MEGABYTE, DigitalMeasurement.KILOBYTE);
-        System.out.println(result1.doubleValue());
-        System.out.println(result2.doubleValue());
+        // Byte conversion
+        BigDecimal byteResult1 = ConverterService.convertBytes(number, DigitalMeasurement.KILOBYTE, DigitalMeasurement.MEGABYTE);
+        BigDecimal byteResult2 = ConverterService.convertBytes(number, DigitalMeasurement.MEGABYTE, DigitalMeasurement.KILOBYTE);
+        System.out.println(byteResult1.doubleValue());
+        System.out.println(byteResult2.doubleValue());
+
+        // Pixel conversion
+        BigDecimal bigDecimal = ConverterService.convertPixels(number);
+        System.out.println(bigDecimal.doubleValue());
     }
 }
