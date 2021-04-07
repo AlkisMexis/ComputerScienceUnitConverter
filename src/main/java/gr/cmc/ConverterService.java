@@ -9,7 +9,7 @@ public class ConverterService {
 
 
     public static BigDecimal convertBytes(double numberToBeConverted, DigitalMeasurement from, DigitalMeasurement to) {
-        // Setting our initial variables
+        // Setting initial variables
         BigDecimal bigDecimalToBeConverted = new BigDecimal(numberToBeConverted);
         // If the conversion ends or begins from/to bit
         boolean isBitsConversion = false;
@@ -45,16 +45,22 @@ public class ConverterService {
     }
 
     //todo: finish method by adding enumeration parameters
-    public static BigDecimal convertPixels(double numberToBeConverted) {
-        // Setting our initial variables
+    public static BigDecimal convertGeneric(double numberToBeConverted, GenericMeasurement from, GenericMeasurement to) {
+        // Setting initial variables
         BigDecimal bigDecimalToBeConverted = new BigDecimal(numberToBeConverted);
         // Setting the conversion value from unit to unit:
-        BigDecimal conversionValueBD = new BigDecimal(1000);
-        int distance = 2;
-        //int distance = calculateDistance(from, to);
+        BigDecimal genericConversionValueBD = new BigDecimal(1000);
+        boolean itsHertzConversion = false;
 
-        return useGenericConverter(bigDecimalToBeConverted, distance, conversionValueBD);
+        int distance = calculateGenericDistance(from, to);
+
+        if (from.getPosition() <= 5 && to.getPosition() <= 4) {
+            itsHertzConversion = true;
+        }
+
+        return useGenericConverter(bigDecimalToBeConverted, itsHertzConversion, distance, genericConversionValueBD);
     }
+
 
     private static int calculateDistance(DigitalMeasurement from, DigitalMeasurement to) {
         int startingPosition = from.getPosition();
@@ -62,14 +68,27 @@ public class ConverterService {
         return startingPosition - endingPosition;
     }
 
-    private static BigDecimal useGenericConverter(BigDecimal convertedNumberBD,
-                                                  int distance,
-                                                  BigDecimal genericConversionValueBD) {
-        if (distance > 0) {
+    private static int calculateGenericDistance(GenericMeasurement from, GenericMeasurement to) {
+        int startingPosition = from.getPosition();
+        int endingPosition = to.getPosition();
+        return startingPosition - endingPosition;
+    }
+
+
+    private static BigDecimal useGenericConverter(BigDecimal convertedNumberBD, boolean itsHertzConversion, int distance, BigDecimal genericConversionValueBD) {
+        if (distance > 0 && distance <= 4) {
+            if (itsHertzConversion) {
+                convertedNumberBD = convertedNumberBD.multiply(genericConversionValueBD);
+                distance--;
+            }
             for (int i = 0; i < distance; i++) {
                 convertedNumberBD = convertedNumberBD.multiply(genericConversionValueBD);
             }
-        } else if (distance < 0) {
+        } else if (distance < 0 && distance >= -4) {
+            if (itsHertzConversion) {
+                convertedNumberBD = convertedNumberBD.divide(genericConversionValueBD);
+                distance++;
+            }
             for (int i = 0; i > distance; i--) {
                 convertedNumberBD = convertedNumberBD.divide(genericConversionValueBD);
             }
