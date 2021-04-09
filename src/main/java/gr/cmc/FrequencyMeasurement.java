@@ -1,6 +1,6 @@
 package gr.cmc;
 
-public enum FrameDisplayMeasurement {
+public enum FrequencyMeasurement implements GenericMeasurement {
     HERTZ(1),
     KILOHERTZ(2),
     MEGAHERTZ(3),
@@ -9,7 +9,7 @@ public enum FrameDisplayMeasurement {
 
     private final int position;
 
-    FrameDisplayMeasurement(int position) {
+    FrequencyMeasurement(int position) {
         this.position = position;
     }
 

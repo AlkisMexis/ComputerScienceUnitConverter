@@ -1,6 +1,6 @@
 package gr.cmc;
 
-public enum ResolutionMeasurement {
+public enum ResolutionMeasurement implements GenericMeasurement {
     PIXEL(1),
     KILOPIXEL(2),
     MEGAPIXEL(3),

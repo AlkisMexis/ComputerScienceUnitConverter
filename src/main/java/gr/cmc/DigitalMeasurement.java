@@ -1,6 +1,6 @@
 package gr.cmc;
 
-public enum DigitalMeasurement {
+public enum DigitalMeasurement implements GenericMeasurement {
     BIT(1),
     BYTE(2),
     KILOBYTE(3),
