@@ -1,6 +1,6 @@
 package gr.cmc;
 
-public enum FrequencyMeasurement implements GenericMeasurement {
+public enum FrequencyMeasurement implements Measurement, GenericMeasurement {
     HERTZ(1),
     KILOHERTZ(2),
     MEGAHERTZ(3),

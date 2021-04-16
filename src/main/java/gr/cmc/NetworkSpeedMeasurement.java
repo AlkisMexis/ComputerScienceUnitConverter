@@ -1,13 +1,11 @@
 package gr.cmc;
 
-public enum NetworkSpeedMeasurement implements GenericMeasurement {
+public enum NetworkSpeedMeasurement implements Measurement {
 
     MILLISECONDS(1),
-    KILLOSECONDS(2),
-    DECISECONDS(3),
-    SECONDS(4),
-    MINUTES(5),
-    HOURS(6);
+    SECONDS(2),
+    MINUTES(3),
+    HOURS(4);
 
     private final int position;
 
