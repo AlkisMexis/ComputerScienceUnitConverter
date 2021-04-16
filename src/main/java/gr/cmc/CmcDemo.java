@@ -17,6 +17,7 @@ public class CmcDemo {
         //Generic conversion
         double genericResult1 = ConverterService.convert(number, FrequencyMeasurement.GIGAHERTZ, FrequencyMeasurement.MEGAHERTZ);
         double genericResult2 = ConverterService.convert(number, ResolutionMeasurement.MEGAPIXEL, ResolutionMeasurement.GIGAPIXEL);
+        double genericResult3 = ConverterService.convert(number, NetworkSpeedMeasurement.MILLISECONDS, NetworkSpeedMeasurement.KILLOSECONDS);
         System.out.println(genericResult1);
         System.out.println(genericResult2);
     }

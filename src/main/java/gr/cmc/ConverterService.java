@@ -7,6 +7,8 @@ public class ConverterService {
     private static final BigDecimal byteConversionValueBD = new BigDecimal(1024);
     private static final BigDecimal genericConversionValueBD = new BigDecimal(1000);
     private static final BigDecimal singleByteValueBD = new BigDecimal(8);
+    private static final BigDecimal minutesConversionValueBD = new BigDecimal(60);
+    private static final BigDecimal hoursConversionValueBD = new BigDecimal(120);
 
     // Don't let anyone instantiate this class.
     private ConverterService() {
@@ -41,6 +43,16 @@ public class ConverterService {
 
         return calculateDigitalMeasurement(numberToBeConvertedBD, isBitsConversion, distance);
     }
+
+    private static BigDecimal useMinutesConverter(BigDecimal numberToBeConvertedBD, int distance, NetworkSpeedMeasurement from, NetworkSpeedMeasurement to) {
+        boolean itsMinutesConversion = false;
+
+        if (from.getPosition() == 5) {
+            itsMinutesConversion = true;
+        }
+        return numberToBeConvertedBD;
+    }
+
 
     private static BigDecimal calculateDigitalMeasurement(BigDecimal convertedNumberBD, boolean isBitsConversion, int distance) {
         if (distance > 0) {
