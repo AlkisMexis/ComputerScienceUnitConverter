@@ -14,6 +14,9 @@ public class ConverterService {
     // Time Measurement
     private static final BigDecimal timeConversionValueBD = new BigDecimal(60);
 
+    //Bits Per Second Measurement
+    private static final BigDecimal bitspersecondConversionValueBD = new BigDecimal(0.125);
+
     // Don't let anyone instantiate this class.
     private ConverterService() {
     }
@@ -35,7 +38,10 @@ public class ConverterService {
             return useByteConverter(bigDecimalToBeConverted, distance, (DigitalMeasurement) from, (DigitalMeasurement) to).doubleValue();
         } else if (from instanceof NetworkSpeedMeasurement) {
             return useNetworkSpeedConverter(bigDecimalToBeConverted, distance, (NetworkSpeedMeasurement) from, (NetworkSpeedMeasurement) to).doubleValue();
+        } else if (from instanceof UploadandDownloadSpeedMeasurement) {
+            return useUploadandDownloadSpeedConverter(bigDecimalToBeConverted, distance, (UploadandDownloadSpeedMeasurement) from, (UploadandDownloadSpeedMeasurement) to).doubleValue();
         }
+
         return 0;
     }
 
@@ -48,6 +54,17 @@ public class ConverterService {
         }
 
         return calculateDigitalMeasurement(numberToBeConvertedBD, isBitsConversion, distance);
+    }
+
+    private static BigDecimal useUploadandDownloadSpeedConverter(BigDecimal numberToBeConvertedBD, int distance, UploadandDownloadSpeedMeasurement from, UploadandDownloadSpeedMeasurement to) {
+
+        boolean itsBitsPerSecondsConversion = false;
+
+        if (from.getPosition() == 1 || to.getPosition() == 1) {
+            itsBitsPerSecondsConversion = true;
+        }
+
+        return calculateUploadandDownloadSpeedMeasurement(numberToBeConvertedBD, itsBitsPerSecondsConversion, distance);
     }
 
     private static BigDecimal useNetworkSpeedConverter(BigDecimal numberToBeConvertedBD, int distance, NetworkSpeedMeasurement from, NetworkSpeedMeasurement to) {
@@ -96,6 +113,27 @@ public class ConverterService {
             }
             for (int i = 0; i > distance; i--) {
                 convertedNumberBD = convertedNumberBD.divide(byteConversionValueBD);
+            }
+        }
+        return convertedNumberBD;
+    }
+
+    private static BigDecimal calculateUploadandDownloadSpeedMeasurement(BigDecimal convertedNumberBD, boolean itsBitsPerSecondsConversion, int distance) {
+        if (distance > 0) {
+            if (itsBitsPerSecondsConversion) {
+                convertedNumberBD = convertedNumberBD.multiply(singleByteValueBD);
+                distance--;
+            }
+            for (int i = 0; i < distance; i++) {
+                convertedNumberBD = convertedNumberBD.multiply(genericConversionValueBD);
+            }
+        } else if (distance < 0) {
+            if (itsBitsPerSecondsConversion) {
+                convertedNumberBD = convertedNumberBD.divide(bitspersecondConversionValueBD);
+                distance++;
+            }
+            for (int i = 0; i > distance; i--) {
+                convertedNumberBD = convertedNumberBD.divide(genericConversionValueBD);
             }
         }
         return convertedNumberBD;

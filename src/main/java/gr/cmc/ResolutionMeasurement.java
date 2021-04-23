@@ -14,6 +14,7 @@ public enum ResolutionMeasurement implements Measurement, GenericMeasurement {
     }
 
     public int getPosition() {
+
         return position;
     }
 }

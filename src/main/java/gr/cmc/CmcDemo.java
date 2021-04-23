@@ -26,6 +26,10 @@ public class CmcDemo {
         double genericResult3 = ConverterService.convert(1, NetworkSpeedMeasurement.HOURS, NetworkSpeedMeasurement.MILLISECONDS);
         System.out.println(genericResult3);
 
+        //bits per second conversion
+        double genericResult4 = ConverterService.convert(number, UploadandDownloadSpeedMeasurement.bps, UploadandDownloadSpeedMeasurement.mbps);
+        System.out.println(genericResult4);
+
         // Error on purpose
         double randomResult = ConverterService.convert(number, FrequencyMeasurement.GIGAHERTZ, ResolutionMeasurement.MEGAPIXEL);
         System.out.println(randomResult);
