@@ -3,7 +3,11 @@ package gr.cmc;
 public class CmcDemo {
     // todo: try and implement ping conversion, check if variable names are okay, etc.
     public static void main(String[] args) {
+
+        // double number = Double.parseDouble(args[0]);
+
         double number = 5;
+
 
         System.out.println(DigitalMeasurement.KILOBYTE.getClass());
 
