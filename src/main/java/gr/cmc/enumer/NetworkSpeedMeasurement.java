@@ -1,4 +1,6 @@
-package gr.cmc;
+package gr.cmc.enumer;
+
+import gr.cmc.Measurement;
 
 public enum NetworkSpeedMeasurement implements Measurement {
 

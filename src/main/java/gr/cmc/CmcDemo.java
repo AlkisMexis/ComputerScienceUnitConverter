@@ -1,5 +1,8 @@
 package gr.cmc;
 
+import gr.cmc.enumer.*;
+import gr.cmc.service.ConverterService;
+
 public class CmcDemo {
     // todo: try and implement ping conversion, check if variable names are okay, etc.
     public static void main(String[] args) {
@@ -31,7 +34,7 @@ public class CmcDemo {
         System.out.println(genericResult3);
 
         //bits per second conversion
-        double genericResult4 = ConverterService.convert(number, UploadandDownloadSpeedMeasurement.bps, UploadandDownloadSpeedMeasurement.mbps);
+        double genericResult4 = ConverterService.convert(number, UploadandDownloadSpeedMeasurement.kbps, UploadandDownloadSpeedMeasurement.bps);
         System.out.println(genericResult4);
 
         // Error on purpose

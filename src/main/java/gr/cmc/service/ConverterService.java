@@ -1,4 +1,10 @@
-package gr.cmc;
+package gr.cmc.service;
+
+import gr.cmc.GenericMeasurement;
+import gr.cmc.Measurement;
+import gr.cmc.enumer.DigitalMeasurement;
+import gr.cmc.enumer.NetworkSpeedMeasurement;
+import gr.cmc.enumer.UploadandDownloadSpeedMeasurement;
 
 import java.math.BigDecimal;
 

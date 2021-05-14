@@ -1,4 +1,7 @@
-package gr.cmc;
+package gr.cmc.enumer;
+
+import gr.cmc.GenericMeasurement;
+import gr.cmc.Measurement;
 
 public enum ResolutionMeasurement implements Measurement, GenericMeasurement {
     PIXEL(1),
